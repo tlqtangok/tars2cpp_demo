@@ -1,0 +1,10 @@
+
+module Cell
+{
+    struct DZLevelInfo
+    {
+        0 optional int level = 2999;            //dz文件的level
+        1 optional float rate;           //瓦片的倍率
+    };
+
+};
