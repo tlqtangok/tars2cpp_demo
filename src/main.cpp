@@ -53,6 +53,70 @@ int main(int argc, char *argv[])
 
 	cout << tars::TC_File::joinPaths("./a", "b", "c.txt") << endl;;
 
+
+	string jsonString = id_arrCell._arr_dz_level_info[0].writeToJsonString();
+	id_arrCell._arr_dz_level_info[1].readFromJsonString(jsonString);
+
+	cout << id_arrCell._arr_dz_level_info[1].writeToJsonString() << endl;
+
+
+	TC_ThreadPool id_threadpool;
+	id_threadpool.init(3);  // Initialize thread pool with 4 threads
+
+	vector<int> vec_i = {1, 2, 3, 4, 5, 6,7};
+	for (auto &e : vec_i)
+	{
+		id_threadpool.exec([&]()
+				{
+				// print this thread id
+				cout << "Thread ID: " << std::this_thread::get_id() << ", Value: " << e << endl;
+				});
+	}
+
+	// start thread pool
+	// sleep 
+
+	cout << "Starting thread pool..." << endl;
+	id_threadpool.start();
+
+	// deconstruct
+	id_threadpool.waitForAllDone();
+
+
+	// id_DZLevelInfo.writeToJsonString();
+
+	if (argc < 2) 
+	{
+		cout << "Usage: " << argv[0] << " <name>" << endl;
+		return 0;
+	}
+
+	TC_Option option;
+	option.decode(argc, argv);
+
+
+
+	if (!option.hasParam("k1")) 
+	{
+		cout << "Please provide a name using --name=<your_name>" << endl;
+		return 0;
+	}
+
+	// get k1 value
+	string v1 = option.getValue("k1");
+	string v2 = option.getValue("k2");
+	string v3 = option.getValue("k3");
+	string v4 = option.getValue("k4");
+
+
+	cout << "_Option k1 is set to: " << v1 << ", k2 is set to: " << v2 << endl;
+	cout << "_Option k3 is set to: " << v3 << ", k4 is set to: " << v4 << endl;
+
+
+	// cout << "Hello, " << argv[1] << "!" << endl;
+	return 0;
+
+    
 #if 0
 	TC_File::makeDirRecursive(dir);
 	int ret = TC_File::removeFile(path, true);
@@ -136,66 +200,4 @@ int main(int argc, char *argv[])
 
 
 #endif 
-
-	string jsonString = id_arrCell._arr_dz_level_info[0].writeToJsonString();
-	id_arrCell._arr_dz_level_info[1].readFromJsonString(jsonString);
-
-	cout << id_arrCell._arr_dz_level_info[1].writeToJsonString() << endl;
-
-
-	TC_ThreadPool id_threadpool;
-	id_threadpool.init(3);  // Initialize thread pool with 4 threads
-
-	vector<int> vec_i = {1, 2, 3, 4, 5, 6,7};
-	for (auto &e : vec_i)
-	{
-		id_threadpool.exec([&]()
-				{
-				// print this thread id
-				cout << "Thread ID: " << std::this_thread::get_id() << ", Value: " << e << endl;
-				});
-	}
-
-	// start thread pool
-	// sleep 
-
-	cout << "Starting thread pool..." << endl;
-	id_threadpool.start();
-
-	// deconstruct
-	id_threadpool.waitForAllDone();
-
-
-	// id_DZLevelInfo.writeToJsonString();
-
-	if (argc < 2) 
-	{
-		cout << "Usage: " << argv[0] << " <name>" << endl;
-		return 0;
-	}
-
-	TC_Option option;
-	option.decode(argc, argv);
-
-
-
-	if (!option.hasParam("k1")) 
-	{
-		cout << "Please provide a name using --name=<your_name>" << endl;
-		return 0;
-	}
-
-	// get k1 value
-	string v1 = option.getValue("k1");
-	string v2 = option.getValue("k2");
-	string v3 = option.getValue("k3");
-	string v4 = option.getValue("k4");
-
-
-	cout << "_Option k1 is set to: " << v1 << ", k2 is set to: " << v2 << endl;
-	cout << "_Option k3 is set to: " << v3 << ", k4 is set to: " << v4 << endl;
-
-
-	// cout << "Hello, " << argv[1] << "!" << endl;
-	return 0;
 }
