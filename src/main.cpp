@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
 	vector<int> vec_i = {1, 2, 3, 4, 5, 6,7};
 	for (auto &e : vec_i)
 	{
-		id_threadpool.exec([&]()
+		id_threadpool.exec([&e]()
 				{
 				// print this thread id
 				cout << "Thread ID: " << std::this_thread::get_id() << ", Value: " << e << endl;
