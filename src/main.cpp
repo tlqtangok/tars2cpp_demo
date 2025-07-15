@@ -32,6 +32,19 @@ int main(int argc, char *argv[])
 
 	LOG_DEBUG << "Hello, world!" << endl;
 
+	Enum_a e_a = Enum_a::DA;
+
+	string str_e_a = etos(e_a);
+	Enum_a e_a_;
+	stoe(str_e_a, e_a_);
+
+	cout << "Enum_a:: " << etos(e_a) << endl;
+	cout << "Enum_a_:: " << etos(e_a_) << endl;
+
+	cout << "e_a == e_a?:" <<  (e_a == e_a_) << endl;
+
+
+
 
 	arr_cell id_arrCell;
 
@@ -177,6 +190,7 @@ int main(int argc, char *argv[])
 	string v2 = option.getValue("k2");
 	string v3 = option.getValue("k3");
 	string v4 = option.getValue("k4");
+
 
 	cout << "_Option k1 is set to: " << v1 << ", k2 is set to: " << v2 << endl;
 	cout << "_Option k3 is set to: " << v3 << ", k4 is set to: " << v4 << endl;

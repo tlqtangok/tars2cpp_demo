@@ -7,4 +7,14 @@ module Cell
         1 optional float rate;           //瓦片的倍率
     };
 
+	enum Enum_a
+    {
+        DT = 1,
+        ES = 2,
+        PO = 3,
+        TC = 4,
+        DA = 5
+    };
+
+
 };
